@@ -1,0 +1,99 @@
+html,
+body {
+    height: auto;
+    padding: 50px;
+    background: #f3ecec;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.form-signin {
+    height: content-box;
+    width: 100%;
+    max-width: 300px;
+    padding: 15px;
+    border: 46px;
+    border-radius: 4px;
+    margin: auto;
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 15px;
+    font-size: 16px;
+}
+
+.form-signin input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #ffffff;
+}
+
+.sign-in-button, .register-button {
+    border: none;
+    color: white;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    padding: 15px 32px;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.sign-in-button{
+    background: forestgreen;
+}
+
+.register-button {
+    background: blue;
+}
+
+.register-button:hover {
+    background: #1d49aa;
+}
+
+.sign-in-button:hover {
+    background: #4CAF50;
+}
+
+.form-registration {
+    height: content-box;
+    width: 100%;
+    max-width: 300px;
+    padding: 15px;
+    border: 46px;
+    border-radius: 4px;
+    margin: auto;
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.form-registration .form-control{
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 15px;
+    font-size: 16px;
+}
+
+.form-registration input[type="text"], input[type="text"], input[type="address"], input[type="email"], input[type="password"], input[type="password"]{
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #ffffff;
+}
