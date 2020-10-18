@@ -22,8 +22,8 @@ public class UserDAOImpl implements UserDAO {
         Connection connection;
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        connection = connectionPool.takeConnection();
         try {
+            connection = connectionPool.takeConnection();
             preparedStatement = (PreparedStatement) connection.createStatement();
             resultSet = preparedStatement.executeQuery(SIGN_IN_QUERY);
             if (!resultSet.next()) {

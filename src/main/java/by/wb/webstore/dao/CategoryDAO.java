@@ -1,7 +1,9 @@
 package by.wb.webstore.dao;
 
 import by.wb.webstore.bean.Category;
+import by.wb.webstore.dao.connectionpool.ConnectionPoolException;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface CategoryDAO {
@@ -9,5 +11,5 @@ public interface CategoryDAO {
 
     void deleteCategory(Category category) throws DAOException;
 
-    List<Category> getCategories() throws DAOException;
+    List<Category> getCategories() throws DAOException, ConnectionPoolException, SQLException;
 }
