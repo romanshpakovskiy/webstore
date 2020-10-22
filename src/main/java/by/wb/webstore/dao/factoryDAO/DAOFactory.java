@@ -10,19 +10,19 @@ import by.wb.webstore.dao.impl.UserDAOImpl;
 public enum DAOFactory {
     INSTANCE;
 
-    private final UserDAO userDAO=new UserDAOImpl();
-    private final ProductDAO productDAO=new ProductDAOImpl();
-    private final CategoryDAO categoryDAO=new CategoryDAOImpl();
+    private final UserDAO userDAO = new UserDAOImpl();
+    private final ProductDAO productDAO = new ProductDAOImpl();
+    private final CategoryDAO categoryDAO = new CategoryDAOImpl();
 
-    public UserDAO getUserDAO(){
+    public UserDAO getUserDAO() {
         return userDAO;
     }
 
-    public ProductDAO getProductDAO(){
+    public ProductDAO getProductDAO() {
         return productDAO;
     }
 
-    public CategoryDAO getCategoryDAO(){
+    public CategoryDAO getCategoryDAO() {
         return categoryDAO;
     }
 }
