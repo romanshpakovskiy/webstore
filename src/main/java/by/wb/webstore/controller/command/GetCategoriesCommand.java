@@ -1,4 +1,4 @@
-package by.wb.webstore.controller.commands;
+package by.wb.webstore.controller.command.impl;
 
 import by.wb.webstore.controller.CommandController;
 import by.wb.webstore.controller.ControllerException;

@@ -1,7 +1,7 @@
 package by.wb.webstore.controller;
 
-public class ControllerException extends Exception{
-    private static final long serialVersionUID= -7509923341412756567L;
+public class ControllerException extends Exception {
+    private static final long serialVersionUID = -7509923341412756567L;
 
     public ControllerException() {
         super();
