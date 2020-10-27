@@ -1,17 +1,17 @@
-package by.wb.webstore.controller.command.impl;
+package by.wb.webstore.controller.command.commandImpl;
 
-import by.wb.webstore.controller.CommandController;
+import by.wb.webstore.controller.command.Command;
 import by.wb.webstore.controller.ControllerException;
 import by.wb.webstore.service.impl.CategoryService;
 import by.wb.webstore.service.impl.ServiceException;
-import by.wb.webstore.service.impl.ServiceFactory;
+import by.wb.webstore.service.ServiceFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class GetCategoriesCommand implements CommandController {
+public class GetCategoriesCommand implements Command {
     @Override
     public void execute(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ControllerException {
         CategoryService categoryService = ServiceFactory.INSTANCE.getCategoryService();

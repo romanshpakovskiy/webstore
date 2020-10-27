@@ -1,22 +1,24 @@
 package by.wb.webstore.controller;
 
-import by.wb.webstore.controller.command.impl.GetCategoriesCommand;
+import by.wb.webstore.controller.command.Command;
+import by.wb.webstore.controller.command.CommandName;
+import by.wb.webstore.controller.command.commandImpl.GetCategoriesCommand;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class CommandProvider {
-    private final Map<Command, CommandController> commandMap = new HashMap<>();
+    private final Map<CommandName, Command> commandMap = new HashMap<>();
 
     CommandProvider() {
-        commandMap.put(Command.GET_CATEGORIES, new GetCategoriesCommand());
+        commandMap.put(CommandName.GET_CATEGORIES, new GetCategoriesCommand());
     }
 
-    by.wb.webstore.controller.CommandController getCommand(String name) {
-        by.wb.webstore.controller.CommandController commandController;
-        Command command;
-        command = Command.valueOf(name.toUpperCase());
-        commandController = commandMap.get(command);
+    Command getCommand(String name) {
+        Command commandController;
+        CommandName commandName;
+        commandName = CommandName.valueOf(name.toUpperCase());
+        commandController = commandMap.get(commandName);
         return commandController;
     }
 }

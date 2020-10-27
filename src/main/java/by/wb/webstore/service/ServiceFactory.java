@@ -1,4 +1,7 @@
-package by.wb.webstore.service.impl;
+package by.wb.webstore.service;
+
+import by.wb.webstore.service.impl.CategoryService;
+import by.wb.webstore.service.impl.CategoryServiceImpl;
 
 public enum ServiceFactory {
     INSTANCE;

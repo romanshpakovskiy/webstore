@@ -1,8 +1,10 @@
-package by.wb.webstore.controller;
+package by.wb.webstore.controller.command;
+
+import by.wb.webstore.controller.ControllerException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public interface CommandController {
+public interface Command {
     void execute(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ControllerException;
 }
