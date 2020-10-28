@@ -5,11 +5,13 @@ import by.wb.webstore.dao.CategoryDAO;
 import by.wb.webstore.dao.DAOException;
 import by.wb.webstore.dao.connectionpool.ConnectionPoolException;
 import by.wb.webstore.dao.factoryDAO.DAOFactory;
+import by.wb.webstore.service.CategoryService;
 
+import javax.xml.rpc.ServiceException;
 import java.sql.SQLException;
 import java.util.List;
 
-public class CategoryServiceImpl implements CategoryService{
+public class CategoryServiceImpl implements CategoryService {
     private final CategoryDAO categoryDAO= DAOFactory.INSTANCE.getCategoryDAO();
 
     @Override

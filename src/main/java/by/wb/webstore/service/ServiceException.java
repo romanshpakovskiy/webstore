@@ -1,4 +1,4 @@
-package by.wb.webstore.service.impl;
+package by.wb.webstore.service;
 
 public class ServiceException extends Exception {
     private static final long serialVersionUID = 6492373647693390327L;

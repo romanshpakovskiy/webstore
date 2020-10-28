@@ -18,7 +18,7 @@ public class UserDAOImpl implements UserDAO {
     private static final String CHANGE_PASSWORD_QUERY="UPDATE users SET password=? WHERE password=? AND id=?";
 
     @Override
-    public User signIn(String email, String password) throws ConnectionPoolException, DAOException {
+    public boolean signIn(String email, String password) throws ConnectionPoolException, DAOException {
         Connection connection;
         PreparedStatement preparedStatement;
         ResultSet resultSet;
@@ -27,7 +27,7 @@ public class UserDAOImpl implements UserDAO {
             preparedStatement = (PreparedStatement) connection.createStatement();
             resultSet = preparedStatement.executeQuery(SIGN_IN_QUERY);
             if (!resultSet.next()) {
-                return null;
+                return false;
             }
             User user = new User();
             user.setName(resultSet.getString("name"));
@@ -36,7 +36,7 @@ public class UserDAOImpl implements UserDAO {
             user.setPassword(resultSet.getString("password"));
             user.setAddress(resultSet.getString("address"));
             user.setRoleId(resultSet.getInt("role_id"));
-            return user;
+            return true;
         } catch (SQLException e) {
             throw new DAOException("Incorrect email or password");
         } finally {

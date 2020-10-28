@@ -9,8 +9,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>main page</title>
-    <style><%@include file="WEB-INF/styles.css"%></style>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="styles/styles.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div class="header">
@@ -27,6 +27,12 @@
     <div class="subnav">
         <button class="subnavcatalog">Catalog<i class="fa fa-caret-down"></i></button>
         <div class="subnavcatalog-content">
+<%--            <c:if test="${requestScope.categories==null}">--%>
+<%--&lt;%&ndash;                <c:redirect url="/controller">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                    <c:param name="command" value="get_categories"/>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                </c:redirect>&ndash;%&gt;--%>
+<%--            <c:redirect url="/controller"/>--%>
+<%--            </c:if>--%>
             <c:forEach items="${requestScope.categories}" var="category">
                 <a href="controller?commandName=get_categories&category_id=">${category.name}</a>
             </c:forEach>

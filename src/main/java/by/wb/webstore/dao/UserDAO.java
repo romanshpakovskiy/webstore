@@ -6,7 +6,7 @@ import by.wb.webstore.dao.connectionpool.ConnectionPoolException;
 import java.sql.SQLException;
 
 public interface UserDAO {
-    User signIn(String login, String password) throws ConnectionPoolException, SQLException, DAOException;
+    boolean signIn(String login, String password) throws ConnectionPoolException, SQLException, DAOException;
 
     boolean checkEmailAccessibility(String email) throws DAOException;
 

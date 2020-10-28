@@ -24,6 +24,11 @@ public class ControllerServlet extends javax.servlet.http.HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-
+        Command commandController = commandProvider.getCommand(request.getParameter(COMMAND_PARAM));
+        try {
+            commandController.execute(request, response);
+        } catch (ControllerException e) {
+            e.printStackTrace();
+        }
     }
 }

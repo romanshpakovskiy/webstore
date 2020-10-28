@@ -13,14 +13,14 @@
         <servlet-name>signIn</servlet-name>
         <url-pattern>/signIn</url-pattern>
     </servlet-mapping>
-
+    
     <servlet>
-        <servlet-name>signUp</servlet-name>
+        <servlet-name>registration</servlet-name>
         <jsp-file>/WEB-INF/jsp/registrationPage.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>signUp</servlet-name>
-        <url-pattern>/signUp</url-pattern>
+        <servlet-name>registration</servlet-name>
+        <url-pattern>/registration</url-pattern>
     </servlet-mapping>
 </web-app>
