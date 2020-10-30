@@ -1,7 +1,7 @@
 package by.wb.webstore.dao;
 
 import by.wb.webstore.bean.User;
-import by.wb.webstore.dao.connectionpool.ConnectionPoolException;
+import by.wb.webstore.dao.factoryDAO.connectionpool.ConnectionPoolException;
 
 import java.sql.SQLException;
 

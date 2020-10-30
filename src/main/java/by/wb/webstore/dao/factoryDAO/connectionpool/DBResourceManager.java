@@ -1,10 +1,10 @@
-package by.wb.webstore.dao.connectionpool;
+package by.wb.webstore.dao.factoryDAO.connectionpool;
 
 import java.util.ResourceBundle;
 
 public class DBResourceManager {
     private static final DBResourceManager instance = new DBResourceManager();
-    private final ResourceBundle resourceBundle = ResourceBundle.getBundle("src.main.java.by.wb.webstore.dao.connectionpool.db");
+    private final ResourceBundle resourceBundle = ResourceBundle.getBundle("db");
 
     public static DBResourceManager getInstance() {
         return instance;

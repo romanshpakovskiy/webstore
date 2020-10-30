@@ -1,4 +1,4 @@
-package by.wb.webstore.dao.connectionpool;
+package by.wb.webstore.dao.factoryDAO.connectionpool;
 
 import java.sql.*;
 import java.util.Map;
@@ -18,11 +18,6 @@ public class ConnectionPool {
     private int poolSize;
 
     private ConnectionPool() {
-        try {
-            initPoolData();
-        } catch (ConnectionPoolException e) {
-            System.out.println(e);
-        }
         DBResourceManager dbResourceManager = DBResourceManager.getInstance();
         this.driver = dbResourceManager.getValue(DBParameter.DB_DRIVER);
         this.url = dbResourceManager.getValue(DBParameter.DB_URL);
@@ -33,7 +28,6 @@ public class ConnectionPool {
         } catch (NumberFormatException e) {
             poolSize = 5;
         }
-
     }
 
     public static ConnectionPool getInstance() {
@@ -58,7 +52,7 @@ public class ConnectionPool {
     }
 
     public Connection takeConnection() throws ConnectionPoolException {
-        Connection connection = null;
+        Connection connection;
         try {
             connection = connectionQueue.take();
             usedQueue.add(connection);
@@ -78,15 +72,30 @@ public class ConnectionPool {
         }
     }
 
-    public void closeConnection(Connection connection, Statement statement, ResultSet resultSet) throws SQLException {
-        connection.close();
-        statement.close();
-        resultSet.close();
+    public void closeConnection(Connection connection, Statement statement, ResultSet resultSet) {
+        closeConnection(connection, statement);
+        try {
+            if (resultSet != null) {
+                resultSet.close();
+            }
+        } catch (SQLException e) {
+            //logger.log(Level.ERROR, "ResultSet isn't empty")
+        }
     }
 
-    public void closeConnection(Connection connection, Statement statement) throws SQLException {
-        connection.close();
-        statement.close();
+    public void closeConnection(Connection connection, Statement statement) {
+        try {
+            if (connection != null)
+                connection.close();
+        } catch (SQLException e) {
+            //logger.log(Level.ERROR, "Connection isn't returned to the connectionpool")
+        }
+        try {
+            if (statement != null)
+                statement.close();
+        } catch (SQLException e) {
+            //logger.log(Level.ERROR, "Statement isn't closed")
+        }
     }
 
     private void clearConnectionQueue() {

@@ -1,6 +1,7 @@
 package by.wb.webstore.controller;
 
 import by.wb.webstore.controller.command.Command;
+import by.wb.webstore.service.ServiceException;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ public class ControllerServlet extends javax.servlet.http.HttpServlet {
         Command commandController = commandProvider.getCommand(request.getParameter(COMMAND_PARAM));
         try {
             commandController.execute(request, response);
-        } catch (ControllerException e) {
+        } catch (ControllerException | ServiceException e) {
             e.printStackTrace();
         }
     }
@@ -27,7 +28,7 @@ public class ControllerServlet extends javax.servlet.http.HttpServlet {
         Command commandController = commandProvider.getCommand(request.getParameter(COMMAND_PARAM));
         try {
             commandController.execute(request, response);
-        } catch (ControllerException e) {
+        } catch (ControllerException | ServiceException e) {
             e.printStackTrace();
         }
     }

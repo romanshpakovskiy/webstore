@@ -3,7 +3,7 @@ package by.wb.webstore.service.impl;
 import by.wb.webstore.bean.User;
 import by.wb.webstore.dao.DAOException;
 import by.wb.webstore.dao.UserDAO;
-import by.wb.webstore.dao.connectionpool.ConnectionPoolException;
+import by.wb.webstore.dao.factoryDAO.connectionpool.ConnectionPoolException;
 import by.wb.webstore.dao.factoryDAO.DAOFactory;
 import by.wb.webstore.service.ServiceException;
 import by.wb.webstore.service.UserService;
