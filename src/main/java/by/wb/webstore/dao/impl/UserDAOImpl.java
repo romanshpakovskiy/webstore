@@ -3,8 +3,8 @@ package by.wb.webstore.dao.impl;
 import by.wb.webstore.bean.User;
 import by.wb.webstore.dao.DAOException;
 import by.wb.webstore.dao.UserDAO;
-import by.wb.webstore.dao.factoryDAO.connectionpool.ConnectionPool;
-import by.wb.webstore.dao.factoryDAO.connectionpool.ConnectionPoolException;
+import by.wb.webstore.dao.impl.connectionpool.ConnectionPool;
+import by.wb.webstore.dao.impl.connectionpool.ConnectionPoolException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

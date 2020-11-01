@@ -27,13 +27,7 @@
     <div class="subnav">
         <button class="subnavcatalog">Catalog<i class="fa fa-caret-down"></i></button>
         <div class="subnavcatalog-content">
-<%--            <c:if test="${requestScope.categories==null}">--%>
-<%--&lt;%&ndash;                <c:redirect url="/controller">&ndash;%&gt;--%>
-<%--&lt;%&ndash;                    <c:param name="command" value="get_categories"/>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                </c:redirect>&ndash;%&gt;--%>
-<%--            <c:redirect url="/controller"/>--%>
-<%--            </c:if>--%>
-            <c:forEach items="${requestScope.categories}" var="category">
+            <c:forEach items="${applicationScope.categories}" var="category">
                 <a href="controller?commandName=get_categories&category_id=">${category.name}</a>
             </c:forEach>
         </div>

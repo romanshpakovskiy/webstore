@@ -19,7 +19,7 @@ public class ControllerServlet extends javax.servlet.http.HttpServlet {
         Command commandController = commandProvider.getCommand(request.getParameter(COMMAND_PARAM));
         try {
             commandController.execute(request, response);
-        } catch (ControllerException | ServiceException e) {
+        } catch (DBConPoolListenerRuntimeException | ServiceException e) {
             e.printStackTrace();
         }
     }
@@ -28,7 +28,7 @@ public class ControllerServlet extends javax.servlet.http.HttpServlet {
         Command commandController = commandProvider.getCommand(request.getParameter(COMMAND_PARAM));
         try {
             commandController.execute(request, response);
-        } catch (ControllerException | ServiceException e) {
+        } catch (DBConPoolListenerRuntimeException | ServiceException e) {
             e.printStackTrace();
         }
     }

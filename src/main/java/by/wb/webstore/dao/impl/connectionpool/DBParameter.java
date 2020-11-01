@@ -1,4 +1,4 @@
-package by.wb.webstore.dao.factoryDAO.connectionpool;
+package by.wb.webstore.dao.impl.connectionpool;
 
 public class DBParameter {
     private DBParameter() {

@@ -3,8 +3,8 @@ package by.wb.webstore.dao.impl;
 import by.wb.webstore.bean.Category;
 import by.wb.webstore.dao.CategoryDAO;
 import by.wb.webstore.dao.DAOException;
-import by.wb.webstore.dao.factoryDAO.connectionpool.ConnectionPool;
-import by.wb.webstore.dao.factoryDAO.connectionpool.ConnectionPoolException;
+import by.wb.webstore.dao.impl.connectionpool.ConnectionPool;
+import by.wb.webstore.dao.impl.connectionpool.ConnectionPoolException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -35,10 +35,10 @@ public class CategoryDAOImpl implements CategoryDAO {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(GET_CATEGORIES);
             List<Category> categoriesList = new ArrayList<>();
-            if (!resultSet.next())
-                return null;
-            categoriesList.add(new Category(resultSet.getInt("id"),
-                    resultSet.getString("name")));
+            while (resultSet.next()) {
+                categoriesList.add(new Category(resultSet.getInt("id"),
+                        resultSet.getString("name")));
+            }
             return categoriesList;
         } catch (SQLException | ConnectionPoolException e) {
             throw new DAOException("Getting categories error", e);

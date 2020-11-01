@@ -1,4 +1,4 @@
-package by.wb.webstore.dao.factoryDAO.connectionpool;
+package by.wb.webstore.dao.impl.connectionpool;
 
 import java.sql.*;
 import java.util.Map;
@@ -34,7 +34,7 @@ public class ConnectionPool {
         return instance;
     }
 
-    private void initPoolData() throws ConnectionPoolException {
+    public void initPoolData() throws ConnectionPoolException {
         try {
             Class.forName(driver);
             usedQueue = new ArrayBlockingQueue<>(poolSize);

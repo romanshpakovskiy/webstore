@@ -2,7 +2,6 @@ package by.wb.webstore.controller.command.commandImpl;
 
 import by.wb.webstore.bean.Category;
 import by.wb.webstore.controller.command.Command;
-import by.wb.webstore.controller.ControllerException;
 import by.wb.webstore.service.CategoryService;
 import by.wb.webstore.service.ServiceException;
 import by.wb.webstore.service.ServiceFactory;
