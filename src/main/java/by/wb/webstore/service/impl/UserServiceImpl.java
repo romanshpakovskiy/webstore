@@ -3,21 +3,22 @@ package by.wb.webstore.service.impl;
 import by.wb.webstore.bean.User;
 import by.wb.webstore.dao.DAOException;
 import by.wb.webstore.dao.UserDAO;
-import by.wb.webstore.dao.impl.connectionpool.ConnectionPoolException;
 import by.wb.webstore.dao.factoryDAO.DAOFactory;
 import by.wb.webstore.service.ServiceException;
 import by.wb.webstore.service.UserService;
-
-import java.sql.SQLException;
+import by.wb.webstore.service.Validator;
 
 public class UserServiceImpl implements UserService {
     private final UserDAO userDAO = DAOFactory.INSTANCE.getUserDAO();
+    Validator validator = new Validator();
 
     @Override
-    public boolean signIn(String login, String password) throws ServiceException {
+    public boolean signIn(String email, String password) throws ServiceException {
+        if(!validator.checkEmailValidation(email) && !validator.checkPasswordValidation(password))
+            throw new ServiceException("Invalid email or password");
         try {
-            return userDAO.signIn(login, password);
-        } catch (ConnectionPoolException | SQLException | DAOException e) {
+            return userDAO.signIn(email, password);
+        } catch (DAOException e) {
             throw new ServiceException(e.getMessage(), e);
         }
     }
