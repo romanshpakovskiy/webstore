@@ -1,6 +1,5 @@
 package by.wb.webstore.dao.impl;
 
-import by.wb.webstore.bean.Role;
 import by.wb.webstore.bean.User;
 import by.wb.webstore.dao.DAOException;
 import by.wb.webstore.dao.UserDAO;
@@ -8,8 +7,6 @@ import by.wb.webstore.dao.impl.connectionpool.ConnectionPool;
 import by.wb.webstore.dao.impl.connectionpool.ConnectionPoolException;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
     private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -17,7 +14,7 @@ public class UserDAOImpl implements UserDAO {
     private static final String DELETE_QUERY = "DELETE * FROM users WHERE id=? AND password=?";
     private static final String CHANGE_PASSWORD_QUERY = "UPDATE users SET password=? WHERE password=? AND id=?";
     private static final String GET_REGISTRATION_DATA_QUERY = "SELECT name, surname, email, password, address FROM users WHERE id=?";
-    private static final String GET_ROLE_QUERY="SELECT";
+    private static final String GET_ROLE_QUERY = "SELECT";
 
     @Override
     public boolean signIn(String email, String password) throws DAOException {
@@ -110,10 +107,10 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public List<String> getRegistrationData(int userId) throws DAOException {
-        Connection connection;
-        Statement statement;
-        ResultSet resultSet;
+    public User getRegistrationData(int userId) throws DAOException {
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
         try {
             connection = connectionPool.takeConnection();
             statement = connection.createStatement();
@@ -122,16 +119,18 @@ public class UserDAOImpl implements UserDAO {
             user.setName(resultSet.getString("name"));
             user.setSurname(resultSet.getString("surname"));
             user.setEmail(resultSet.getString("email"));
-            user.setRoleId();
             user.setAddress(resultSet.getString("address"));
+//            user.setRoleId();
+            return user;
         } catch (ConnectionPoolException | SQLException e) {
             throw new DAOException(e);
+        } finally {
+            connectionPool.closeConnection(connection, statement, resultSet);
         }
-        return null;
     }
 
-    private List<Role> getUserRole(int roleId, Connection connection){
+    /*private List<Role> getUserRole(int roleId, Connection connection) {
         List<Role> roleList = new ArrayList<>();
-        try(Statement statement = connection.createStatement())
-    }
+        try (Statement statement = connection.createStatement())
+    }*/
 }

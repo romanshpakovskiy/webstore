@@ -10,19 +10,18 @@
     <title>Authorization</title>
 </head>
 <body>
-<form class="form-signin">
+<form class="form-signin" method="get">
+    <input name="command" type="hidden" value="signIn"/>
     <h1 style="text-align: center; font-family: 'Segoe UI', sans-serif;">Please sign in</h1>
     <label for="email"></label>
     <input type="email" placeholder="Email address" id="email" class="form-control" required autofocus>
     <label for="password"></label>
-    <input type="password" placeholder="Password" id="password" class="form-control" required>
-    <form action="${pageContext.request.contextPath}/signIn">
+    <input type="password" placeholder="Password" id="password" class="form-control" required autofocus>
     <button class="sign-in-button" type="submit">Sign in</button>
-    </form>
-    <hr>
-    <form class="register-btn" action="${pageContext.request.contextPath}/registration">
-        <button class="register-button" type="submit">Register</button>
-    </form>
+</form>
+<hr>
+<form class="register-btn" action="${pageContext.request.contextPath}/registration">
+    <button class="register-button" type="submit">Register</button>
 </form>
 </body>
 </html>

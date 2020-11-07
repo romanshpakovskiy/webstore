@@ -3,9 +3,11 @@ package by.wb.webstore.controller;
 import by.wb.webstore.controller.command.Command;
 import by.wb.webstore.service.ServiceException;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @WebServlet(name = "Controller", value = "/controller")
 public class ControllerServlet extends javax.servlet.http.HttpServlet {
@@ -19,7 +21,7 @@ public class ControllerServlet extends javax.servlet.http.HttpServlet {
         Command commandController = commandProvider.getCommand(request.getParameter(COMMAND_PARAM));
         try {
             commandController.execute(request, response);
-        } catch (DBConPoolListenerRuntimeException | ServiceException e) {
+        } catch (DBConPoolListenerRuntimeException | ServiceException | IOException | ServletException e) {
             e.printStackTrace();
         }
     }
@@ -28,7 +30,7 @@ public class ControllerServlet extends javax.servlet.http.HttpServlet {
         Command commandController = commandProvider.getCommand(request.getParameter(COMMAND_PARAM));
         try {
             commandController.execute(request, response);
-        } catch (DBConPoolListenerRuntimeException | ServiceException e) {
+        } catch (DBConPoolListenerRuntimeException | ServiceException | IOException | ServletException e) {
             e.printStackTrace();
         }
     }

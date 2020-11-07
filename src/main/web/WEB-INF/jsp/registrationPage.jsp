@@ -10,7 +10,8 @@
     <link href="${pageContext.request.contextPath}/styles/regsignstyles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form class="form-registration">
+<form class="form-registration" method="post">
+    <input name="command" type="hidden" value="registration"/>
     <h1 style="text-align: center; font-family: 'Segoe UI', sans-serif;">Register please</h1>
     <label for="name"></label>
     <input type="text" placeholder="Name" id="name" name="name" class="form-control" required autofocus>
@@ -21,9 +22,13 @@
     <label for="password"></label>
     <input type="password" placeholder="Password" id="password" name="password" class="form-control" required autofocus>
     <label for="repassword"></label>
-    <input type="password" placeholder="Re-entered password" id="repassword" name="repassword" class="form-control" required autofocus>
-    <hr>
+    <input type="password" placeholder="Re-entered password" id="repassword" name="repassword" class="form-control"
+           required autofocus>
     <button class="register-button" type="submit">Register</button>
+</form>
+<hr>
+<form action="${pageContext.request.contextPath}/signIn">
+    <button class="sign-in-button" type="submit">SignIn</button>
 </form>
 </body>
 </html>

@@ -2,5 +2,7 @@ package by.wb.webstore.controller.command;
 
 public enum CommandName {
     GET_CATEGORIES,
-    SIGN_IN;
+    SIGN_IN,
+    REGISTRATION,
+    GET_REGISTRATION_DATA;
 }

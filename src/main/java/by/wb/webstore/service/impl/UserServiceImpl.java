@@ -42,4 +42,13 @@ public class UserServiceImpl implements UserService {
     public boolean changePassword(int userId, String oldPassword, String newPassword) {
         return false;
     }
+
+    @Override
+    public User getRegistrationData(int userId) throws ServiceException {
+        try {
+            return userDAO.getRegistrationData(userId);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
 }

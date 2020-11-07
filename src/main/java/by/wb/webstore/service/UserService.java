@@ -12,4 +12,6 @@ public interface UserService {
     boolean deleteUser(int userId, String password);
 
     boolean changePassword(int userId, String oldPassword, String newPassword);
+
+    User getRegistrationData(int userId) throws ServiceException;
 }
