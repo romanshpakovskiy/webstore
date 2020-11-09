@@ -13,8 +13,8 @@ public class UserServiceImpl implements UserService {
     Validator validator = new Validator();
 
     @Override
-    public boolean signIn(String email, String password) throws ServiceException {
-        if(!validator.checkEmailValidation(email) && !validator.checkPasswordValidation(password))
+    public User signIn(String email, String password) throws ServiceException {
+        if (!validator.checkEmailValidation(email) && !validator.checkPasswordValidation(password))
             throw new ServiceException("Invalid email or password");
         try {
             return userDAO.signIn(email, password);
@@ -24,13 +24,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean checkEmailAccessibility(String email) {
-        return false;
-    }
-
-    @Override
-    public boolean registration(User user) {
-        return false;
+    public User registration(User user, int roleId) throws ServiceException {
+        try {
+            return userDAO.registration(user, roleId);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
@@ -43,12 +42,12 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
-    @Override
+   /* @Override
     public User getRegistrationData(int userId) throws ServiceException {
         try {
             return userDAO.getRegistrationData(userId);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
-    }
+    }*/
 }

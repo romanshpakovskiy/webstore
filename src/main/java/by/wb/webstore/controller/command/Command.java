@@ -1,6 +1,5 @@
 package by.wb.webstore.controller.command;
 
-import by.wb.webstore.controller.DBConPoolListenerRuntimeException;
 import by.wb.webstore.service.ServiceException;
 
 import javax.servlet.ServletException;

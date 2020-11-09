@@ -11,7 +11,7 @@
 </head>
 <body>
 <form class="form-signin" method="get">
-    <input name="command" type="hidden" value="signIn"/>
+    <input  type="hidden" name="command" value="sign_in"/>
     <h1 style="text-align: center; font-family: 'Segoe UI', sans-serif;">Please sign in</h1>
     <label for="email"></label>
     <input type="email" placeholder="Email address" id="email" class="form-control" required autofocus>
