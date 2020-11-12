@@ -14,7 +14,6 @@ import java.io.IOException;
 public class RegistrationCommand implements Command {
     UserService userService = ServiceFactory.INSTANCE.getUserService();
 
-    private static final String MAIN_PAGE_URL = "WEB-INF/index.jsp";
     private static final String USER_NAME_PARAM = "name";
     private static final String USER_SURNAME_PARAM = "surname";
     private static final String USER_EMAIL_PARAM = "email";
@@ -25,13 +24,13 @@ public class RegistrationCommand implements Command {
     private static final String ERROR_PAGE_URL = "WEB_INF/jsp/errorPage.jsp";
 
     @Override
-    public void execute(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+    public void execute(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
         UserService userService=ServiceFactory.INSTANCE.getUserService();
         User regUser = getRegistrationData(httpServletRequest);
         try {
-            User user = userService.registration(regUser, USER_DEFAULT_ROLE_ID);
+            User user = userService.registration(regUser);
             if (user != null) {
-                httpServletRequest.getRequestDispatcher(MAIN_PAGE_URL).forward(httpServletRequest, httpServletResponse);
+                httpServletResponse.sendRedirect(httpServletRequest.getContextPath());
             } else httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + ERROR_PAGE_URL);
         } catch (ServiceException e) {
             httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + ERROR_PAGE_URL);
@@ -45,6 +44,7 @@ public class RegistrationCommand implements Command {
         user.setEmail(request.getParameter(USER_EMAIL_PARAM));
         user.setPassword(request.getParameter(USER_PASSWORD_PARAM));
         user.setAddress(request.getParameter(USER_ADDRESS_PARAM));
+        user.setRoleId(USER_DEFAULT_ROLE_ID);
         return user;
     }
 }

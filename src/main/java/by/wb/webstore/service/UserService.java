@@ -5,7 +5,7 @@ import by.wb.webstore.bean.User;
 public interface UserService {
     User signIn(String login, String password) throws ServiceException;
 
-    User registration(User user, int roleId) throws ServiceException;
+    User registration(User user) throws ServiceException;
 
     boolean deleteUser(int userId, String password);
 

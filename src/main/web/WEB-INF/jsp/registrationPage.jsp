@@ -14,7 +14,7 @@
 
 </head>
 <body>
-<form class="form-registration" method="post">
+<form class="form-registration" method="post" action="controller">
     <input name="command" type="hidden" value="registration"/>
     <h1 style="text-align: center; font-family: 'Segoe UI', sans-serif;">Register please</h1>
     <label for="name"><b></b></label>
