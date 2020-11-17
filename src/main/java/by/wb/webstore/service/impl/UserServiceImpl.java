@@ -9,13 +9,12 @@ import by.wb.webstore.service.UserService;
 import by.wb.webstore.service.Validator;
 
 public class UserServiceImpl implements UserService {
-    private final UserDAO userDAO = DAOFactory.INSTANCE.getUserDAO();
-
     @Override
     public User signIn(String email, String password) throws ServiceException {
         Validator validator = new Validator();
 /*        if (!validator.checkEmailValidation(email) || !validator.checkPasswordValidation(password))
             throw new ServiceException("Invalid email or password");*/
+        UserDAO userDAO = DAOFactory.INSTANCE.getUserDAO();
         try {
             return userDAO.signIn(email, password);
         } catch (DAOException e) {
@@ -25,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User registration(User user) throws ServiceException {
-
+        UserDAO userDAO = DAOFactory.INSTANCE.getUserDAO();
         try {
             return userDAO.registration(user);
         } catch (DAOException e) {
