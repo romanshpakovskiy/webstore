@@ -11,4 +11,12 @@ public class Validator {
     public boolean checkPasswordValidation(String password) {
         return password.matches(PASSWORD_PATTERN);
     }
+
+    public boolean checkCategoryValidation(String categoryId) {
+        return categoryId.isEmpty() & Integer.parseInt(categoryId) > 0;
+    }
+
+    public boolean checkProductValidation(String productId) {
+        return productId.isEmpty() & Integer.parseInt(productId) > 0;
+    }
 }
