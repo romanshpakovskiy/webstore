@@ -13,33 +13,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<div class="header">
-    <h1 style="font-family: Bahnschrift sans-serif;padding-left: 5px; width: 105%">storesname.com
-        <span style="font-family: 'Berlin Sans FB',sans-serif;
-        font-weight: lighter; padding-left: 50%">choose from the best</span>
-    </h1>
-    <form class="sign-in" action="<c:url value="/signIn"/>">
-        <button class="sign-in-btn" type="submit">Log In</button>
-    </form>
-</div>
+    <jsp:include page="WEB-INF/jsp/header.jsp"/>
 
-<div class="navbar">
-    <div class="subnav">
-        <button class="subnavcatalog">Catalog<i class="fa fa-caret-down"></i></button>
-        <div class="subnavcatalog-content">
-            <c:forEach items="${applicationScope.categories}" var="category">
-                <a href="controller?commandName=get_categories&category_id=">${category.name}</a>
-            </c:forEach>
-        </div>
-    </div>
+    <jsp:include page="WEB-INF/jsp/navbar.jsp"/>
 
-    <div class="search-container">
-        <form method="get">
-            <label><input type="text" placeholder="Search.." name="search"></label>
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-    </div>
-    <!--    <a href="zdesbudetbasketpotom.jsp"><img src="images/icon25.png" alt="Button"></a>-->
-</div>
 </body>
 </html>

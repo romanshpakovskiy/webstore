@@ -8,8 +8,26 @@ public class Product {
     int id;
     String name;
     Double price;
+    int categoryId;
     int count;
     String specification;
+
+    public Product(int id, String name, Double price, int categoryId, int count, String specification) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.categoryId = categoryId;
+        this.count = count;
+        this.specification = specification;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
 
     public int getId() {
         return id;

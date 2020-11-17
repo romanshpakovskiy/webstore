@@ -6,7 +6,6 @@ import by.wb.webstore.service.ServiceException;
 import by.wb.webstore.service.ServiceFactory;
 import by.wb.webstore.service.UserService;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -25,7 +24,7 @@ public class RegistrationCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
-        UserService userService=ServiceFactory.INSTANCE.getUserService();
+        UserService userService = ServiceFactory.INSTANCE.getUserService();
         User regUser = getRegistrationData(httpServletRequest);
         try {
             User user = userService.registration(regUser);

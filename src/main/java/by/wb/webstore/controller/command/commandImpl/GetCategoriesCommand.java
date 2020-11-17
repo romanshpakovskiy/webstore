@@ -13,12 +13,14 @@ import java.io.IOException;
 import java.util.List;
 
 public class GetCategoriesCommand implements Command {
+    private static final String CATEGORIES_ATTRIBUTE = "categories";
+
     @Override
     public void execute(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServiceException {
         CategoryService categoryService = ServiceFactory.INSTANCE.getCategoryService();
         try {
             List<Category> categories = categoryService.getCategories();
-            httpServletRequest.setAttribute("categories", categories);
+            httpServletRequest.setAttribute(CATEGORIES_ATTRIBUTE, categories);
             httpServletRequest.getRequestDispatcher("index.jsp").forward(httpServletRequest, httpServletResponse);
         } catch (ServletException | IOException e) {
             e.printStackTrace();
