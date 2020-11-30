@@ -10,5 +10,7 @@ public interface CategoryDAO {
 
     void deleteCategory(Category category) throws DAOException;
 
+    Category getCategory(int categoryId) throws DAOException;
+
     List<Category> getCategories() throws DAOException;
 }

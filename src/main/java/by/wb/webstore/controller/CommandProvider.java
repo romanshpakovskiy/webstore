@@ -11,9 +11,11 @@ public class CommandProvider {
     private final Map<CommandName, Command> commandMap = new HashMap<>();
 
     CommandProvider() {
+        commandMap.put(CommandName.GET_CATEGORY,new GetCategoryCommand());
         commandMap.put(CommandName.GET_CATEGORIES, new GetCategoriesCommand());
         commandMap.put(CommandName.SIGN_IN, new SignInCommand());
         commandMap.put(CommandName.REGISTRATION, new RegistrationCommand());
+        commandMap.put(CommandName.GET_PRODUCT,new GetProductCommand());
         commandMap.put(CommandName.GET_PRODUCTS_BY_CATEGORY, new GetProductsByCategoryCommand());
         commandMap.put(CommandName.GET_PRODUCTS, new GetProductsCommand());
     }

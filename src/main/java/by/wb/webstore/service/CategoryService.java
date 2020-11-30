@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface CategoryService {
     List<Category> getCategories() throws ServiceException;
+
+    Category getCategory(String categoryId) throws ServiceException;
 }
