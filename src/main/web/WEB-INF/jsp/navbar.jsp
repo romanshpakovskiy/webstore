@@ -3,21 +3,24 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
-    <title>navbar</title>
+    <title></title>
     <link href="${pageContext.request.contextPath}/styles/styles.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div class="navbar">
     <div class="subnav">
-        <form action="${pageContext.request.contextPath}/catalog">
+        <form action="controller" method="get">
+            <input type="hidden" name="command" value="get_products">
             <button class="subnavcatalog">Catalog<i class="fa fa-caret-down"></i></button>
         </form>
 
         <div class="subnavcatalog-content">
             <c:forEach items="${applicationScope.categories}" var="category">
-                <form action="${pageContext.request.contextPath}/catalog">
-                    <a href="controller?commandName=get_categories&category_id=${category.id}">${category.name}</a>
+                <form action="controller" method="get">
+                    <input type="hidden" name="command" value="get_products_by_category">
+                    <input type="hidden" name="category_id" value="${category.id}">
+                    <button class="subnavcatalog-content-button">${category.name}</button>
                 </form>
             </c:forEach>
         </div>
