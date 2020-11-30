@@ -16,8 +16,9 @@ import java.util.List;
 public class ProductDAOImpl implements ProductDAO {
     private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
     public static final String ADD_PRODUCT_QUERY = "INSERT INTO products(id,name,price,category_id,count,specification) VALUES(?,?,?,?,?,?)";
-    public static final String GET_PROD_BY_CATEGORY_QUERY = "SELECT * FROM products WHERE category_id=?";
-    public static final String GET_PRODUCTS_BY_ID_QUERY = "SELECT * FROM products WHERE id=?";
+    public static final String GET_PROD_QUERY = "SELECT * FROM products WHERE id=?";
+    private static final String GET_PROD_BY_CATEGORY_QUERY = "SELECT * FROM products WHERE category_id=?";
+    private static final String GET_PRODUCTS_QUERY = "SELECT * FROM products";
 
     @Override
     public boolean addProduct(Product product) {
@@ -40,6 +41,29 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
+    public Product getProduct(int productId) throws DAOException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = connectionPool.takeConnection();
+            preparedStatement = connection.prepareStatement(GET_PROD_QUERY);
+            resultSet = preparedStatement.executeQuery();
+
+            if (!resultSet.next()) {
+                return null;
+            }
+
+            return new Product(productId, resultSet.getString("name"), resultSet.getDouble("price"),
+                    resultSet.getInt("categoryId"), resultSet.getInt("count"), resultSet.getString("specification"));
+        } catch (ConnectionPoolException | SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            connectionPool.closeConnection(connection, preparedStatement, resultSet);
+        }
+    }
+
+    @Override
     public List<Product> getProductsByCategory(int categoryId) throws DAOException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -47,6 +71,9 @@ public class ProductDAOImpl implements ProductDAO {
         try {
             connection = connectionPool.takeConnection();
             preparedStatement = connection.prepareStatement(GET_PROD_BY_CATEGORY_QUERY);
+
+            preparedStatement.setInt(1, categoryId);
+
             resultSet = preparedStatement.executeQuery();
 
             List<Product> productList = new ArrayList<>();
@@ -65,13 +92,13 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public List<Product> getProducts(int productId) throws DAOException {
+    public List<Product> getProducts() throws DAOException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
             connection = connectionPool.takeConnection();
-            preparedStatement = connection.prepareStatement(GET_PRODUCTS_BY_ID_QUERY);
+            preparedStatement = connection.prepareStatement(GET_PRODUCTS_QUERY);
             resultSet = preparedStatement.executeQuery();
 
             List<Product> productList = new ArrayList<>();
@@ -85,7 +112,7 @@ public class ProductDAOImpl implements ProductDAO {
         } catch (ConnectionPoolException | SQLException e) {
             throw new DAOException("Getting products exception");
         } finally {
-            connectionPool.closeConnection(connection,preparedStatement,resultSet);
+            connectionPool.closeConnection(connection, preparedStatement, resultSet);
         }
     }
 

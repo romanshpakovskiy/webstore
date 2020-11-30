@@ -35,9 +35,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Product getProduct(String productId) throws ServiceException {
+        try {
+            return productDAO.getProduct(Integer.parseInt(productId));
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
     public List<Product> getProductsByCategory(String categoryId) throws ServiceException {
-        if (!validator.checkCategoryValidation(categoryId))
-            throw new ServiceException("Category id = " + categoryId);
+        /*if (!validator.checkCategoryValidation(categoryId))
+            throw new ServiceException("Category id = " + categoryId);*/
         try {
             return productDAO.getProductsByCategory(Integer.parseInt(categoryId));
         } catch (DAOException e) {
@@ -46,11 +55,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getProducts(String productId) throws ServiceException {
-        if (!validator.checkProductValidation(productId))
-            throw new ServiceException("Product id = " + productId);
+    public List<Product> getProducts() throws ServiceException {
         try {
-            return productDAO.getProducts(Integer.parseInt(productId));
+            return productDAO.getProducts();
         } catch (DAOException e) {
             throw new ServiceException(e);
         }

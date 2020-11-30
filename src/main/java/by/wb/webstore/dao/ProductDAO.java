@@ -13,9 +13,11 @@ public interface ProductDAO {
 
     boolean deleteProductFromBasket(int productId, int userId) throws DAOException;
 
+    Product getProduct(int productId) throws DAOException;
+
     List<Product> getProductsByCategory(int categoryId) throws DAOException;
 
-    List<Product> getProducts(int productId) throws DAOException;
+    List<Product> getProducts() throws DAOException;
 
     List<Product> getProductsFromBasket(int userId) throws DAOException;
 }

@@ -13,9 +13,11 @@ public interface ProductService {
 
     boolean deleteProductFromBasket(int productId, int userId);
 
+    Product getProduct(String productId) throws ServiceException;
+
     List<Product> getProductsByCategory(String categoryId) throws ServiceException;
 
-    List<Product> getProducts(String productId) throws ServiceException;
+    List<Product> getProducts() throws ServiceException;
 
     List<Product> getProductsFromBasket(int userId);
 }

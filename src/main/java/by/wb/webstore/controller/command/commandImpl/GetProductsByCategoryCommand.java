@@ -14,7 +14,7 @@ import java.util.List;
 
 public class GetProductsByCategoryCommand implements Command {
     private static final String CATEGORY_ID_PARAM = "category_id";
-    private static final String PROD_ATTRIBUTE = "products";
+    private static final String SORTED_PROD_ATTR = "sorted_products";
     private static final String ERROR_PAGE_PATH = "WEB-INF/jsp/errorPage.jsp";
     private static final String CATALOG_PAGE_PATH = "WEB-INF/jsp/catalogPage.jsp";
 
@@ -24,10 +24,10 @@ public class GetProductsByCategoryCommand implements Command {
     public void execute(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServiceException {
         try {
             List<Product> productList = productService.getProductsByCategory(httpServletRequest.getParameter(CATEGORY_ID_PARAM));
-            httpServletRequest.setAttribute(PROD_ATTRIBUTE, productList);
             if (productList == null) {
                 httpServletRequest.getRequestDispatcher(ERROR_PAGE_PATH).forward(httpServletRequest, httpServletResponse);
             } else {
+                httpServletRequest.setAttribute(SORTED_PROD_ATTR, productList);
                 httpServletRequest.getRequestDispatcher(CATALOG_PAGE_PATH).forward(httpServletRequest, httpServletResponse);
             }
         } catch (ServletException | IOException e) {
