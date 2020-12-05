@@ -7,7 +7,7 @@ import java.util.List;
 public interface ProductService {
     boolean addProduct(Product product);
 
-    boolean addProductsInBasket(Product product);
+    boolean addProductsInBasket(int userId, String productId, String count) throws ServiceException;
 
     boolean deleteProduct(long idProduct);
 

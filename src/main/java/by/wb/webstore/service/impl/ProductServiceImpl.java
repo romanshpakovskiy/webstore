@@ -6,13 +6,10 @@ import by.wb.webstore.dao.ProductDAO;
 import by.wb.webstore.dao.factoryDAO.DAOFactory;
 import by.wb.webstore.service.ProductService;
 import by.wb.webstore.service.ServiceException;
-import by.wb.webstore.service.Validator;
-
 import java.util.List;
 
 public class ProductServiceImpl implements ProductService {
     ProductDAO productDAO = DAOFactory.INSTANCE.getProductDAO();
-    Validator validator = new Validator();
 
     @Override
     public boolean addProduct(Product product) {
@@ -20,8 +17,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public boolean addProductsInBasket(Product product) {
-        return false;
+    public boolean addProductsInBasket(int userId, String productId, String count) throws ServiceException {
+        try {
+            return productDAO.addProductsInBasket(userId, Integer.parseInt(productId),Integer.parseInt(count));
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override

@@ -21,14 +21,14 @@ public class GetProductsByCategoryCommand implements Command {
     ProductService productService = ServiceFactory.INSTANCE.getProductService();
 
     @Override
-    public void execute(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServiceException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         try {
-            List<Product> productList = productService.getProductsByCategory(httpServletRequest.getParameter(CATEGORY_ID_PARAM));
+            List<Product> productList = productService.getProductsByCategory(request.getParameter(CATEGORY_ID_PARAM));
             if (productList == null) {
-                httpServletRequest.getRequestDispatcher(ERROR_PAGE_PATH).forward(httpServletRequest, httpServletResponse);
+                request.getRequestDispatcher(ERROR_PAGE_PATH).forward(request, response);
             } else {
-                httpServletRequest.setAttribute(SORTED_PROD_ATTR, productList);
-                httpServletRequest.getRequestDispatcher(CATALOG_PAGE_PATH).forward(httpServletRequest, httpServletResponse);
+                request.setAttribute(SORTED_PROD_ATTR, productList);
+                request.getRequestDispatcher(CATALOG_PAGE_PATH).forward(request, response);
             }
         } catch (ServletException | IOException e) {
             e.printStackTrace();

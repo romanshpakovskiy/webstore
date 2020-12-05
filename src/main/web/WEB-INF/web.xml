@@ -42,4 +42,14 @@
         <servlet-name>catalog</servlet-name>
         <url-pattern>/catalog</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>productPage</servlet-name>
+        <jsp-file>/WEB-INF/jsp/productPage.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>productPage</servlet-name>
+        <url-pattern>/product</url-pattern>
+    </servlet-mapping>
 </web-app>

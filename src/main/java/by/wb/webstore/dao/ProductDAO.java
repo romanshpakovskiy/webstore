@@ -3,11 +3,12 @@ package by.wb.webstore.dao;
 import by.wb.webstore.bean.Product;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ProductDAO {
     boolean addProduct(Product product) throws DAOException;
 
-    boolean addProductsInBasket(Product product) throws DAOException;
+    boolean addProductsInBasket(int userId, int productId, int count) throws DAOException;
 
     boolean deleteProduct(long idProduct) throws DAOException;
 

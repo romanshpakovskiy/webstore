@@ -7,9 +7,9 @@
     <title>product</title>
 </head>
 <body>
-    <c:import url="header.jsp"/>
+    <jsp:include page="header.jsp"/>
 
-    <c:import url="navbar.jsp"/>
+    <jsp:include page="navbar.jsp"/>
 
     <div class="prod-wrapper">
         <div class="product-name">${requestScope.product.name}</div>
