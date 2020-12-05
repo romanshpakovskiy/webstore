@@ -73,7 +73,6 @@ public class ConnectionPool {
     }
 
     public void closeConnection(Connection connection, Statement statement, ResultSet resultSet) {
-        closeConnection(connection, statement);
         try {
             if (resultSet != null) {
                 resultSet.close();
@@ -81,20 +80,22 @@ public class ConnectionPool {
         } catch (SQLException e) {
             //logger.log(Level.ERROR, "ResultSet isn't empty")
         }
+        closeConnection(connection, statement);
     }
 
     public void closeConnection(Connection connection, Statement statement) {
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+        } catch (SQLException e) {
+            //logger.log(Level.ERROR, "Statement isn't closed")
+        }
         try {
             if (connection != null)
                 connection.close();
         } catch (SQLException e) {
             //logger.log(Level.ERROR, "Connection isn't returned to the connectionpool")
-        }
-        try {
-            if (statement != null)
-                statement.close();
-        } catch (SQLException e) {
-            //logger.log(Level.ERROR, "Statement isn't closed")
         }
     }
 

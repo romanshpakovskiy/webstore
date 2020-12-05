@@ -48,28 +48,6 @@
 
 <div class="catalog-wrapper">
     <div class="product-wrapper">
-        <c:forEach items="${requestScope.sorted_products}" var="product">
-            <form action="controller" method="get">
-                <input type="hidden" name="command" value="get_product"/>
-                <input type="hidden" name="product_id" value="${product.id}">
-                <div class="product-name">${product.name}</div>
-                <div class="prod-img">
-                    <img src="#">
-                </div>
-                <div class="product-price">${product.price}</div>
-                <button class="view-prod-btn">View</button>
-            </form>
-
-            <form action="controller" method="post">
-
-                <button class="add-to-basket-btn">Add to basket</button>
-            </form>
-        </c:forEach>
-    </div>
-</div>
-
-<div class="catalog-wrapper">
-    <div class="product-wrapper">
         <c:forEach items="${requestScope.products}" var="product">
             <div class="product">
                 <form action="controller" method="get">

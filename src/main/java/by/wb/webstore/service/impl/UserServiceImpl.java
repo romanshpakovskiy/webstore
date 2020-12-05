@@ -6,14 +6,10 @@ import by.wb.webstore.dao.UserDAO;
 import by.wb.webstore.dao.factoryDAO.DAOFactory;
 import by.wb.webstore.service.ServiceException;
 import by.wb.webstore.service.UserService;
-import by.wb.webstore.service.Validator;
 
 public class UserServiceImpl implements UserService {
     @Override
     public User signIn(String email, String password) throws ServiceException {
-        Validator validator = new Validator();
-/*        if (!validator.checkEmailValidation(email) || !validator.checkPasswordValidation(password))
-            throw new ServiceException("Invalid email or password");*/
         UserDAO userDAO = DAOFactory.INSTANCE.getUserDAO();
         try {
             return userDAO.signIn(email, password);

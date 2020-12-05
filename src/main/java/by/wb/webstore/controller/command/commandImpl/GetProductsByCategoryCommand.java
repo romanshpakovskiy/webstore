@@ -14,7 +14,7 @@ import java.util.List;
 
 public class GetProductsByCategoryCommand implements Command {
     private static final String CATEGORY_ID_PARAM = "category_id";
-    private static final String SORTED_PROD_ATTR = "sorted_products";
+    private static final String SORTED_PROD_ATTR = "products";
     private static final String ERROR_PAGE_PATH = "WEB-INF/jsp/errorPage.jsp";
     private static final String CATALOG_PAGE_PATH = "WEB-INF/jsp/catalogPage.jsp";
 
