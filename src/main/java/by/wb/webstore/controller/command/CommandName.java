@@ -1,6 +1,7 @@
 package by.wb.webstore.controller.command;
 
 public enum CommandName {
+    ADD_PRODUCTS_IN_BASKET,
     GET_CATEGORY,
     GET_CATEGORIES,
     SIGN_IN,

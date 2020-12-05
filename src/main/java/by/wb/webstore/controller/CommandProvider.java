@@ -11,6 +11,7 @@ public class CommandProvider {
     private final Map<CommandName, Command> commandMap = new HashMap<>();
 
     CommandProvider() {
+        commandMap.put(CommandName.ADD_PRODUCTS_IN_BASKET,new AddProductsInBasket());
         commandMap.put(CommandName.GET_CATEGORY,new GetCategoryCommand());
         commandMap.put(CommandName.GET_CATEGORIES, new GetCategoriesCommand());
         commandMap.put(CommandName.SIGN_IN, new SignInCommand());

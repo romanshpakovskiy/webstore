@@ -52,12 +52,13 @@ public class CategoryDAOImpl implements CategoryDAO {
     @Override
     public List<Category> getCategories() throws DAOException {
         Connection connection = null;
-        Statement statement = null;
+        PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
             connection = connectionPool.takeConnection();
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(GET_CATEGORIES_QUERY);
+            preparedStatement = connection.prepareStatement(GET_CATEGORIES_QUERY);
+            resultSet = preparedStatement.executeQuery();
+
             List<Category> categoriesList = new ArrayList<>();
             while (resultSet.next()) {
                 categoriesList.add(new Category(resultSet.getInt("id"),
@@ -68,7 +69,7 @@ public class CategoryDAOImpl implements CategoryDAO {
             throw new DAOException("Getting categories error", e);
         } finally {
             if (resultSet != null) {
-                connectionPool.closeConnection(connection, statement, resultSet);
+                connectionPool.closeConnection(connection, preparedStatement, resultSet);
             }
         }
     }

@@ -57,13 +57,16 @@
                     <img src="#">
                 </div>
                 <div class="product-price">${product.price}</div>
-                <button class="view-prod-btn" type="submit" value="">View</button>
+                <button class="view-prod-btn">View</button>
             </form>
-            <button class="add-to-basket-btn" type="submit">Add to basket</button>
+
+            <form action="controller" method="post">
+
+                <button class="add-to-basket-btn">Add to basket</button>
+            </form>
         </c:forEach>
     </div>
 </div>
-
 
 <div class="catalog-wrapper">
     <div class="product-wrapper">
@@ -73,13 +76,21 @@
                     <input type="hidden" name="command" value="get_product"/>
                     <input type="hidden" name="product_id" value="${product.id}">
                     <div class="product-name">${product.name}</div>
-                    <div class="product-price">${product.price}</div>
                     <div class="prod-img">
                         <img src="#">
                     </div>
-                    <button class="view-prod-btn" type="submit" value="">View</button>
+                    <div class="product-price">${product.price}</div>
+                    <button class="view-prod-btn">View</button>
                 </form>
-                <button class="add-to-basket-btn" type="submit">Add to basket</button>
+
+                <form action="controller" method="post">
+                    <input type="hidden" name="command" value="add_products_in_basket">
+                        <label>
+                            <input type="number" name="count" step="1" min="1" max="10" value="1" pattern="[0-9]*">
+                        </label>
+                    <input type="hidden" name="product_id" value="${requestScope.product.id}">
+                    <button class="add-to-basket-btn">Add to basket</button>
+                </form>
             </div>
         </c:forEach>
     </div>

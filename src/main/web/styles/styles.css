@@ -210,17 +210,7 @@ body {
 
 .product-price{
     color: grey;
-    font-size: 22px;
+    font-size: 20px;
 }
 
-.view-prod-btn{
-    border: none;
-    outline: 0;
-    padding: 12px;
-    color: white;
-    background-color: #000;
-    text-align: center;
-    cursor: pointer;
-    width: 560%;
-    font-size: 18px;
-}
+
