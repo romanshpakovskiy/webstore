@@ -95,7 +95,7 @@ public class ConnectionPool {
             if (connection != null)
                 connection.close();
         } catch (SQLException e) {
-            //logger.log(Level.ERROR, "Connection isn't returned to the connectionpool")
+            //logger.log(Level.ERROR, "Connection isn't returned to the connection pool")
         }
     }
 
@@ -166,7 +166,14 @@ public class ConnectionPool {
 
         @Override
         public void close() throws SQLException {
-            connection.close();
+            if (connection.isClosed())
+                throw new SQLException("Connection is just closed");
+            if (connection.isReadOnly())
+                connection.setReadOnly(false);
+            if (!usedQueue.remove(this))
+                throw new SQLException("Error deleting connection from given away connection pool");
+            if (!connectionQueue.offer(this))
+                throw new SQLException("Error allocating connection in the pool");
         }
 
         @Override
