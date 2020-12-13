@@ -11,12 +11,12 @@
 </head>
 <body>
 <form class="form-signin" method="get" action="controller">
-    <input  name="command" type="hidden" value="sign_in"/>
+    <input name="command" type="hidden" value="sign_in"/>
     <h1 style="text-align: center; font-family: 'Segoe UI', sans-serif;">Please sign in</h1>
     <label for="email"></label>
-    <input type="email" placeholder="Email address" id="email" class="form-control" required autofocus>
+    <input type="email" placeholder="Email address" id="email" name="email" class="form-control" required autofocus>
     <label for="password"></label>
-    <input type="password" placeholder="Password" id="password" class="form-control" required autofocus>
+    <input type="password" placeholder="Password" id="password" name="password" class="form-control" required autofocus>
     <button class="sign-in-button" type="submit">Sign in</button>
 </form>
 <hr>

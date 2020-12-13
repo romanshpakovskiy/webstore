@@ -7,17 +7,15 @@
         <servlet-name>signIn</servlet-name>
         <jsp-file>/WEB-INF/jsp/signInPage.jsp</jsp-file>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>signIn</servlet-name>
         <url-pattern>/signIn</url-pattern>
     </servlet-mapping>
-    
+
     <servlet>
         <servlet-name>registration</servlet-name>
         <jsp-file>/WEB-INF/jsp/registrationPage.jsp</jsp-file>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>registration</servlet-name>
         <url-pattern>/registration</url-pattern>
@@ -27,7 +25,6 @@
         <servlet-name>error</servlet-name>
         <jsp-file>/WEB-INF/jsp/errorPage.jsp</jsp-file>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>error</servlet-name>
         <url-pattern>/error</url-pattern>
@@ -37,7 +34,6 @@
         <servlet-name>catalog</servlet-name>
         <jsp-file>/WEB-INF/jsp/catalogPage.jsp</jsp-file>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>catalog</servlet-name>
         <url-pattern>/catalog</url-pattern>
@@ -47,9 +43,17 @@
         <servlet-name>productPage</servlet-name>
         <jsp-file>/WEB-INF/jsp/productPage.jsp</jsp-file>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>productPage</servlet-name>
         <url-pattern>/product</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>cart</servlet-name>
+        <jsp-file>/WEB-INF/jsp/basket.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cart</servlet-name>
+        <url-pattern>/cart</url-pattern>
     </servlet-mapping>
 </web-app>

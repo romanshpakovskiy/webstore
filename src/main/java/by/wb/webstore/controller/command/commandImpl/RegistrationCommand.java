@@ -8,6 +8,7 @@ import by.wb.webstore.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class RegistrationCommand implements Command {
@@ -19,6 +20,7 @@ public class RegistrationCommand implements Command {
     private static final String USER_PASSWORD_PARAM = "password";
     private static final String USER_ADDRESS_PARAM = "address";
     private static final int USER_DEFAULT_ROLE_ID = 1;
+    private static final String USER_ATTR = "user";
     private static final String EXISTING_USER_ERROR = "/registration?error_message=existing";
     private static final String ERROR_PAGE_URL = "WEB_INF/jsp/errorPage.jsp";
 
@@ -29,6 +31,8 @@ public class RegistrationCommand implements Command {
         try {
             User user = userService.registration(regUser);
             if (user != null) {
+                HttpSession session = httpServletRequest.getSession(true);
+                session.setAttribute(USER_ATTR, user);
                 httpServletResponse.sendRedirect(httpServletRequest.getContextPath());
             } else httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + ERROR_PAGE_URL);
         } catch (ServiceException e) {
