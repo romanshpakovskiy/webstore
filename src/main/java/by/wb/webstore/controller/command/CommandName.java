@@ -8,5 +8,6 @@ public enum CommandName {
     REGISTRATION,
     GET_PRODUCT,
     GET_PRODUCTS,
-    GET_PRODUCTS_BY_CATEGORY;
+    GET_PRODUCTS_BY_CATEGORY,
+    GO_TO_BASKET;
 }

@@ -1,11 +1,14 @@
 package by.wb.webstore.service.impl;
 
+import by.wb.webstore.bean.BasketAttributes;
 import by.wb.webstore.bean.Product;
 import by.wb.webstore.dao.DAOException;
 import by.wb.webstore.dao.ProductDAO;
 import by.wb.webstore.dao.factoryDAO.DAOFactory;
 import by.wb.webstore.service.ProductService;
 import by.wb.webstore.service.ServiceException;
+
+import java.util.Base64;
 import java.util.List;
 
 public class ProductServiceImpl implements ProductService {
@@ -65,7 +68,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getProductsFromBasket(int userId) {
-        return null;
+    public List<BasketAttributes> getProductsFromBasket(String userId) throws ServiceException {
+        try {
+            return productDAO.getProductsFromBasket(Integer.parseInt(userId));
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package by.wb.webstore.dao.impl;
 
+import by.wb.webstore.bean.BasketAttributes;
 import by.wb.webstore.bean.Product;
 import by.wb.webstore.dao.DAOException;
 import by.wb.webstore.dao.ProductDAO;
@@ -17,7 +18,9 @@ public class ProductDAOImpl implements ProductDAO {
     public static final String GET_PROD_QUERY = "SELECT * FROM products WHERE id=?";
     private static final String GET_PROD_BY_CATEGORY_QUERY = "SELECT * FROM products WHERE category_id=?";
     private static final String GET_PRODUCTS_QUERY = "SELECT * FROM products";
-    private static final String ADD_PRODUCT_IN_BASKET_QUERY = "INSERT INTO basket SET user_id=?, product_id=?, count=?";
+    private static final String ADD_PRODUCT_IN_BASKET_QUERY = "INSERT INTO baskets (user_id, product_id, count) VALUES (?,?,?)";
+    private static final String GET_PRODUCTS_FROM_BASKET_QUERY = "SELECT id, name, price, baskets.count, specification, baskets " +
+            "FROM products JOIN baskets ON products.id=baskets.products_id WHERE baskets.user_id=?";
 
     @Override
     public boolean addProduct(Product product) {
@@ -32,15 +35,15 @@ public class ProductDAOImpl implements ProductDAO {
             connection = connectionPool.takeConnection();
             preparedStatement = connection.prepareStatement(ADD_PRODUCT_IN_BASKET_QUERY);
 
-            preparedStatement.setInt(1,userId);
-            preparedStatement.setInt(2,productId);
-            preparedStatement.setInt(3,count);
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setInt(2, productId);
+            preparedStatement.setInt(3, count);
 
             return preparedStatement.executeUpdate() != 0;
         } catch (ConnectionPoolException | SQLException e) {
             throw new DAOException(e);
-        }finally {
-            connectionPool.closeConnection(connection,preparedStatement);
+        } finally {
+            connectionPool.closeConnection(connection, preparedStatement);
         }
     }
 
@@ -122,8 +125,8 @@ public class ProductDAOImpl implements ProductDAO {
             while (resultSet.next())
                 productList.add(new Product(resultSet.getInt("id"), resultSet.getString("name"),
                         resultSet.getDouble("price"), resultSet.getInt("category_id"),
-                        resultSet.getInt("count"), resultSet.getString("specification")));
-
+                        resultSet.getInt("count"),
+                        resultSet.getString("specification")));
             return productList;
         } catch (ConnectionPoolException | SQLException e) {
             throw new DAOException("Getting products exception");
@@ -133,7 +136,27 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public List<Product> getProductsFromBasket(int userId) {
-        return null;
+    public List<BasketAttributes> getProductsFromBasket(int userId) throws DAOException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet rS = null;
+        try {
+            connection = connectionPool.takeConnection();
+            preparedStatement = connection.prepareStatement(GET_PRODUCTS_FROM_BASKET_QUERY);
+            preparedStatement.setInt(1, userId);
+            rS = preparedStatement.executeQuery();
+
+            List<BasketAttributes> prodAttrList = new ArrayList<>();
+
+            while (rS.next()) {
+                prodAttrList.add(new BasketAttributes(rS.getInt("id"), rS.getString("name"),
+                        rS.getDouble("price"), rS.getInt("count"), rS.getString("specification")));
+            }
+            return prodAttrList;
+        } catch (ConnectionPoolException | SQLException e) {
+            throw new DAOException("Getting products exception");
+        } finally {
+            connectionPool.closeConnection(connection, preparedStatement, rS);
+        }
     }
 }

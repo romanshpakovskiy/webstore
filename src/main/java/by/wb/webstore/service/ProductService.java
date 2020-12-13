@@ -1,5 +1,6 @@
 package by.wb.webstore.service;
 
+import by.wb.webstore.bean.BasketAttributes;
 import by.wb.webstore.bean.Product;
 
 import java.util.List;
@@ -19,5 +20,5 @@ public interface ProductService {
 
     List<Product> getProducts() throws ServiceException;
 
-    List<Product> getProductsFromBasket(int userId);
+    List<BasketAttributes> getProductsFromBasket(String userId) throws ServiceException;
 }

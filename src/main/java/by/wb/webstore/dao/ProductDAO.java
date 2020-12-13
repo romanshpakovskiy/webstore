@@ -1,5 +1,6 @@
 package by.wb.webstore.dao;
 
+import by.wb.webstore.bean.BasketAttributes;
 import by.wb.webstore.bean.Product;
 
 import java.util.List;
@@ -20,5 +21,5 @@ public interface ProductDAO {
 
     List<Product> getProducts() throws DAOException;
 
-    List<Product> getProductsFromBasket(int userId) throws DAOException;
+    List<BasketAttributes> getProductsFromBasket(int userId) throws DAOException;
 }

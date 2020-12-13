@@ -30,6 +30,14 @@
         <form action="${pageContext.request.contextPath}/catalog">
             <button class="subnavcatalog">Catalog</button>
         </form>
+
+        <c:if test="${sessionScope.user!=null}">
+            <form action="controller" method="get">
+                <input type="hidden" name="command" value="go_to_basket">
+                <input type="hidden" name="user_id" value="${sessionScope.user.id}">
+                <button class="subnavcart">Cart</button>
+            </form>
+        </c:if>
     </div>
 
     <div class="search-container">
@@ -40,13 +48,13 @@
     </div>
 </div>
 
-<div class="catalog-nav">
-    <c:forEach items="${applicationScope.categories}" var="category">
-        <a href="controller?command=get_categories&category_id=${category.id}">${category.name}</a>
-    </c:forEach>
-</div>
-
 <div class="catalog-wrapper">
+    <div class="catalog-nav">
+        <c:forEach items="${applicationScope.categories}" var="category">
+            <a href="controller?command=get_categories&category_id=${category.id}">${category.name}</a>
+        </c:forEach>
+    </div>
+
     <div class="product-wrapper">
         <c:forEach items="${requestScope.products}" var="product">
             <div class="product">
@@ -63,10 +71,11 @@
 
                 <form action="controller" method="post">
                     <input type="hidden" name="command" value="add_products_in_basket">
-                        <label>
-                            <input type="number" name="count" step="1" min="1" max="10" value="1" pattern="[0-9]*">
-                        </label>
-                    <input type="hidden" name="product_id" value="${requestScope.product.id}">
+                    <input type="hidden" name="user_id" value="${sessionScope.user.id}">
+                    <input type="hidden" name="product_id" value="${product.id}">
+                    <label>
+                        <input type="number" name="count" step="1" min="1" max="10" value="1" pattern="[0-9]*">
+                    </label>
                     <button class="add-to-basket-btn">Add to basket</button>
                 </form>
             </div>

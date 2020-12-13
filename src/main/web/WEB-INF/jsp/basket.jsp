@@ -5,7 +5,6 @@
 <head>
     <title>basket</title>
 
-    <link href="${pageContext.request.contextPath}/js/countRegulation.js">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="${pageContext.request.contextPath}/styles/styles.css" rel="stylesheet" type="text/css">
 </head>
@@ -15,8 +14,8 @@
 
 <div class="basket-section">
     <div class="row">
-        <h1 class="basket-content">Basket(${} items)</h1>
-        <c:forEach items="${requestScope.}">
+        <h1 class="basket-content">Basket(2 items)</h1>
+        <c:forEach items="${requestScope.products}">
             <div class="product-section">
                 <div class="prod-img">
                     <img src="#">
@@ -24,9 +23,7 @@
                 <div>
 
                 </div>
-                <input type="button" value="+" onClick="change('amount',0,10, 1);"/>
-                <input id="amount" type="text" value="1"/>
-                <input type="button" value="-" onClick="change('amount',0,10,-1);"/>
+
             </div>
         </c:forEach>
     </div>

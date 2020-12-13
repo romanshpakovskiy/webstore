@@ -19,6 +19,7 @@ public class CommandProvider {
         commandMap.put(CommandName.GET_PRODUCT,new GetProductCommand());
         commandMap.put(CommandName.GET_PRODUCTS_BY_CATEGORY, new GetProductsByCategoryCommand());
         commandMap.put(CommandName.GET_PRODUCTS, new GetProductsCommand());
+        commandMap.put(CommandName.GO_TO_BASKET,new GoToBasketCommand());
     }
 
     Command getCommand(String name) {
