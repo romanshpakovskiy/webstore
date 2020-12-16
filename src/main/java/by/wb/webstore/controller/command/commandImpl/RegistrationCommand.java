@@ -12,8 +12,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class RegistrationCommand implements Command {
-    UserService userService = ServiceFactory.INSTANCE.getUserService();
-
     private static final String USER_NAME_PARAM = "name";
     private static final String USER_SURNAME_PARAM = "surname";
     private static final String USER_EMAIL_PARAM = "email";
@@ -21,8 +19,7 @@ public class RegistrationCommand implements Command {
     private static final String USER_ADDRESS_PARAM = "address";
     private static final int USER_DEFAULT_ROLE_ID = 1;
     private static final String USER_ATTR = "user";
-    private static final String EXISTING_USER_ERROR = "/registration?error_message=existing";
-    private static final String ERROR_PAGE_URL = "WEB_INF/jsp/errorPage.jsp";
+    private static final String ERROR_PAGE_URL = "WEB-INF/jsp/errorPage.jsp";
 
     @Override
     public void execute(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {

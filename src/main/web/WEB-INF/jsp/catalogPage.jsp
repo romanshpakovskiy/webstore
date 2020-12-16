@@ -58,6 +58,26 @@
     <div class="product-wrapper">
         <c:forEach items="${requestScope.products}" var="product">
             <div class="product">
+                <form action="controller" method="post">
+                    <input type="hidden" name="command" value="add_products_in_basket">
+                    <c:if test="${requestScope.category_id!=null && requestScope.category_id!=null && requestScope.count!=null}">
+                        <input type="hidden" name="product_id" value="${requestScope.category_id}">
+                        <label>
+                            <input type="number" name="count" step="1" min="1" max="10"
+                                   value="${requestScope.count}" pattern="[0-9]*">
+                        </label>
+                        <input type="hidden" name="category_id" value="${requestScope.category_id}">
+                    </c:if>
+
+                    <input type="hidden" name="product_id" value="${product.id}">
+                    <label>
+                        <input type="number" name="count" step="1" min="1" max="10"
+                               value="1" pattern="[0-9]*">
+                    </label>
+                    <input type="hidden" name="category_id" value="${requestScope.product.categoryId}">
+                    <button class="add-to-basket-btn">Add to basket</button>
+                </form>
+
                 <form action="controller" method="get">
                     <input type="hidden" name="command" value="get_product"/>
                     <input type="hidden" name="product_id" value="${product.id}">
@@ -67,16 +87,6 @@
                     </div>
                     <div class="product-price">${product.price}</div>
                     <button class="view-prod-btn">View</button>
-                </form>
-
-                <form action="controller" method="post">
-                    <input type="hidden" name="command" value="add_products_in_basket">
-                    <input type="hidden" name="user_id" value="${sessionScope.user.id}">
-                    <input type="hidden" name="product_id" value="${product.id}">
-                    <label>
-                        <input type="number" name="count" step="1" min="1" max="10" value="1" pattern="[0-9]*">
-                    </label>
-                    <button class="add-to-basket-btn">Add to basket</button>
                 </form>
             </div>
         </c:forEach>
