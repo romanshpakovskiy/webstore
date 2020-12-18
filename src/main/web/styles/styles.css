@@ -82,12 +82,19 @@ body {
 
 .subnavcatalog-content {
     display: none;
-    position: absolute;
-    left: 0;
     background-color: #923939;
+    border: 1px solid #923944;
+    position: absolute;
+    text-align: justify;
+    line-height: 0;
+    text-justify: newspaper;
+    zoom: 1;
+    text-align-last: justify;
+    left: 0;
     width: 100%;
     z-index: 1;
 }
+
 
 .subnavcatalog-content a:hover {
     background-color: #eee;
@@ -149,6 +156,7 @@ body {
     }
 }
 
+/*categories in catalog*/
 .category-wrapper {
     display: block;
     width: 100%;
@@ -171,13 +179,11 @@ body {
 
 /*catalog page styles*/
 
-.catalog-nav {
-    display: none;
-    position: absolute;
-    left: 0;
-    background-color: #923939;
-    width: 100%;
-    z-index: 1;
+.catalog-wrapper.catalog-nav{
+    text-align: justify;
+    line-height: 0;
+    font-size: 1px;
+    text-justify: newspaper;
 }
 
 .category-wrapper {

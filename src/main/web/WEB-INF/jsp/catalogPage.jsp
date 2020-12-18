@@ -51,7 +51,11 @@
 <div class="catalog-wrapper">
     <div class="catalog-nav">
         <c:forEach items="${applicationScope.categories}" var="category">
-            <a href="controller?command=get_categories&category_id=${category.id}">${category.name}</a>
+            <form action="controller" method="get">
+                <input type="hidden" name="command" value="get_products_by_category">
+                <input type="hidden" name="category_id" value="${category.id}">
+                <button class="subnavcatalog-content-button">${category.name}</button>
+            </form>
         </c:forEach>
     </div>
 
@@ -60,21 +64,11 @@
             <div class="product">
                 <form action="controller" method="post">
                     <input type="hidden" name="command" value="add_products_in_basket">
-                    <c:if test="${requestScope.category_id!=null && requestScope.category_id!=null && requestScope.count!=null}">
-                        <input type="hidden" name="product_id" value="${requestScope.category_id}">
-                        <label>
-                            <input type="number" name="count" step="1" min="1" max="10"
-                                   value="${requestScope.count}" pattern="[0-9]*">
-                        </label>
-                        <input type="hidden" name="category_id" value="${requestScope.category_id}">
-                    </c:if>
-
                     <input type="hidden" name="product_id" value="${product.id}">
                     <label>
                         <input type="number" name="count" step="1" min="1" max="10"
                                value="1" pattern="[0-9]*">
                     </label>
-                    <input type="hidden" name="category_id" value="${requestScope.product.categoryId}">
                     <button class="add-to-basket-btn">Add to basket</button>
                 </form>
 

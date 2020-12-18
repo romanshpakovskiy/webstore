@@ -34,20 +34,9 @@ public class SignInCommand implements Command {
             } else {
                 HttpSession session = request.getSession(true);
                 session.setAttribute(USER_ATTR, user);
-                Cookie[] cookies = request.getCookies();
-                if (cookies != null) {
-                    for (Cookie cookie : cookies) {
-                        switch (cookie.getName()) {
-                            case "prod_id" -> request.setAttribute("prod_id", cookie);
-                            case "count" -> request.setAttribute("count", cookie);
-                            case "category_id" -> request.setAttribute("category_id", cookie);
-                        }
-                    }
-                    request.getRequestDispatcher(CATALOG_PAGE_PATH).forward(request,response);
-                }
                 response.sendRedirect(request.getContextPath());
             }
-        } catch (ServiceException | ServletException e) {
+        } catch (ServiceException e) {
             response.sendRedirect(request.getContextPath() + TAKEN_PARAMETER_ERROR);
         }
     }
