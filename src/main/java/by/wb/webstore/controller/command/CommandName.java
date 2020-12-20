@@ -10,5 +10,6 @@ public enum CommandName {
     GET_PRODUCTS,
     GET_PRODUCTS_BY_CATEGORY,
     GO_TO_BASKET,
-    SIGN_OUT;
+    SIGN_OUT,
+    AUTO_SIGN_IN;
 }

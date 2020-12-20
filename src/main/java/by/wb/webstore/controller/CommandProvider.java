@@ -21,6 +21,7 @@ public class CommandProvider {
         commandMap.put(CommandName.GET_PRODUCTS, new GetProductsCommand());
         commandMap.put(CommandName.GO_TO_BASKET,new GoToBasketCommand());
         commandMap.put(CommandName.SIGN_OUT,new SignOutCommand());
+        commandMap.put(CommandName.AUTO_SIGN_IN,new AutoSignInCommand());
     }
 
     Command getCommand(String name) {
