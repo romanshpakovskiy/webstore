@@ -1,7 +1,6 @@
 package by.wb.webstore.controller.command.commandImpl;
 
 import by.wb.webstore.controller.command.Command;
-import by.wb.webstore.service.ServiceException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -16,7 +15,7 @@ public class SignOutCommand implements Command {
     private static final String USER_ATTR = "user";
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         deleteCookie(response, EMAIL_PARAM);
         deleteCookie(response, PSW_PARAM);
 

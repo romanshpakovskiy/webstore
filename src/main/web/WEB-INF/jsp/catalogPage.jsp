@@ -14,16 +14,7 @@
     <link href="${pageContext.request.contextPath}/styles/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-
-<div class="header">
-    <%--    <a href="index.jsp" style="font-family:Bahnschrift sans-serif; padding-left: 5px; width: 105%;--%>
-    <%--text-de">storesname.com</a>--%>
-    <h1 style="font-family: 'Berlin Sans FB',sans-serif;font-weight: lighter; padding-right: 50%">choose from the
-        best</h1>
-    <form class="sign-in" action="<c:url value="/signIn"/>">
-        <button class="sign-in-btn" type="submit">Log In</button>
-    </form>
-</div>
+<jsp:include page="header.jsp"/>
 
 <div class="navbar">
     <div class="subnav">
@@ -48,16 +39,17 @@
     </div>
 </div>
 
+<div class="catalog-nav">
+    <c:forEach items="${applicationScope.categories}" var="category">
+        <form action="controller" method="get">
+            <input type="hidden" name="command" value="get_products_by_category">
+            <input type="hidden" name="category_id" value="${category.id}">
+            <button type="button" class="subnavcatalog-content-button">${category.name}</button>
+        </form>
+    </c:forEach>
+</div>
+
 <div class="catalog-wrapper">
-    <div class="catalog-nav">
-        <c:forEach items="${applicationScope.categories}" var="category">
-            <form action="controller" method="get">
-                <input type="hidden" name="command" value="get_products_by_category">
-                <input type="hidden" name="category_id" value="${category.id}">
-                <button class="subnavcatalog-content-button">${category.name}</button>
-            </form>
-        </c:forEach>
-    </div>
 
     <div class="product-wrapper">
         <c:forEach items="${requestScope.products}" var="product">
